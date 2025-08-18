@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./logincss/login.css">
+  <link rel="stylesheet" href="./logincss/headerlogin.css">
+  <title>Login/Registro con Imagen Más Ancha</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+<header class="header">
+    <div class="logo-container">
+        <img src="./img/logo.png" alt="Logo Milagro" class="logo">
+    </div>
+    <a href="./index.html"><button class="back-button" onclick="history.back()">← Retroceder</button></a>
+</header>
+
+  <div class="container" id="container">
+    <div class="image-box">
+      <img id="mainImage" src="./img/loginimagen.png" alt="Imagen Login" />
+    </div>
+
+    <div class="form-wrapper">
+      <!-- LOGIN -->
+      <div class="form-section active" id="loginForm">
+        <h2>LOGIN</h2>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Correo electrónico" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="loginPass" placeholder="Contraseña" required />
+          <i class="fas fa-eye eye-icon" onclick="togglePassword('loginPass')"></i>
+        </div>
+        <label><input type="checkbox" /> Automático</label>
+        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        <button type="submit">Ingresar</button>
+        <button type="button" class="switch-btn" id="toRegister">Registrar</button>
+      </div>
+
+      <!-- REGISTRO -->
+      <div class="form-section" id="registerForm">
+        <h2>REGISTRA</h2>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Nombres y Apellidos" required />
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <i class="fas fa-venus-mars"></i>
+            <select required>
+              <option value="" disabled selected>Sexo</option>
+              <option value="mujer">Mujer</option>
+              <option value="hombre">Hombre</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="date" required />
+          </div>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-phone"></i>
+          <input type="tel" placeholder="Celular" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Correo electrónico" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="pass1" placeholder="Contraseña" />
+          <i class="fas fa-eye eye-icon" onclick="togglePassword('pass1')"></i>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="pass2" placeholder="Confirmar contraseña" />
+          <i class="fas fa-eye eye-icon" onclick="togglePassword('pass2')"></i>
+        </div>
+        <button type="submit">Registrar</button>
+        <button type="button" class="switch-btn" id="toLogin">← Volver</button>
+      </div>
+    </div>
+  </div>
+
+<script src="./scripts/login.js"></script>
+
+
+</body>
+</html>

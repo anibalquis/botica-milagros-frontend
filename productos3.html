@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Botica Milagro</title>
+  <!-- CSS INICIO  -->
+   <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="./css/header.css">
+   <link rel="stylesheet" href="./css/mian-nav.css">
+   <link rel="stylesheet" href="./css/slider.css">
+  <link rel="stylesheet" href="./csscarritdecompras/caras.css">
+   <link rel="stylesheet" href="./css/carrucelconimagen.css">
+   <link rel="stylesheet" href="./css/footer.css">
+   <link rel="stylesheet" href="./css/ventanflotantedecarrito.css">
+   <link rel="stylesheet" href="./css/ventanaflotanteusuario.css">
+   <link rel="stylesheet" href="./css/vntanaflotantenotificaciones.css">
+   <link rel="stylesheet" href="./productoscss/productos.css">
+     <link rel="stylesheet" href="./css/motro de busqueda/buscador.css">
+  <!-- CSS FINAL -->
+  <link rel="icon" type="image/x-icon" href="./img/logosolo.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" href="add.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <a href="">
+      <div class="slider-container">
+        <div class="slider-track">
+        <img class="slide-image" src="./img/img/sloder.png" alt="">
+        <img class="slide-image" src="./img/img/sloder.png" alt="">
+        <img class="slide-image" src="./img/img/sloder.png" alt="">
+        </div>
+      </div>
+    </a>
+
+    <header class="header">
+    <div class="logo-container">
+        <div class="logo">
+        <img src="./img/logo.png" alt="MILAGRO">
+        </div>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </div>
+
+    <div class="search-bar">
+        <div class="icon-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" />
+        </div>
+
+    <!-- Contenedor de productos -->
+  <div class="productos-container" id="productos-container" style="display: none;"> 
+    <!-- Los productos se generarán automáticamente -->
+  </div>
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Buscar productos..." 
+        >
+        <div id="suggestions-box"></div>
+      </div>    </div>
+
+    <div class="nav-icons" id="navIcons">
+    <!-- Botón Avisos -->
+    <button class="icono-nav" id="btnAvisos">
+      <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Avisos" />
+      <span>Avisos</span>
+    </button>
+
+      <div class="nav-container">
+          <button class="nav-icon" id="cart-open-trigger">
+              <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" />
+              <span>Carrito</span>
+          </button>
+      </div>
+
+      <button class="nav-icon" id="perfilBtn">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Perfil" />
+        <span>Perfil</span>
+      </button>
+    </div>
+
+    <!-- codigo no tocar -->
+    <button class="icono-nav" id="btnUsuario" style="display: none;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Usuario" />
+      <span>Usuario</span>
+    </button>
+
+    <!-- Ventana Usuario -->
+    <div class="ventanaEmergente" id="menuUsuario">
+      <a href="#">Iniciar sesión</a>
+      <a href="#">Cerrar sesión</a>
+      <a href="#">Ver perfil</a>
+    </div>
+
+
+    <!-- Menú flotante de usuairo -->
+    <div class="menu-perfil" id="menuPerfil"style="display: none;">
+      <a href="./login.html">Iniciar sesión</a>
+      <a href="#">Cerrar sesión</a>
+      <a href="./cuenta.html">Ver perfil</a>
+    </div>
+    <!-- Menú flotante de notificaciones -->
+    <div class="ventanaEmergente cajaAvisos" id="cajaAvisos">
+      <h4 style="margin: 16px 16px 8px;">Notificaciones</h4>
+
+      <div class="aviso">
+        <p>¡30% de descuento en laptops!</p>
+        <button onclick="location.href='#oferta-laptops'">Ver</button>
+      </div>
+
+      <div class="aviso">
+        <p>Nuevo diseño del carrito de compras</p>
+        <button onclick="location.href='#carrito'">Ver</button>
+      </div>
+
+      <div class="aviso">
+        <p>Nuevo producto: Smartphone Z10</p>
+        <button onclick="location.href='#producto-z10'">Ver</button>
+      </div>
+    </div>
+    </header>
+
+
+
+  <nav class="main-nav">
+    <ul>
+      <li class="inicio"><i class="fas fa-home"><a href="./index.html"></i>Inicio</li></a>
+      <li><i class="fas fa-pills"><a href="./productos.html"></i>Medicamentos genéricos</li></a>
+      <li><i class="fas fa-spa"><a href="./productos2.html"></i>Higiene y belleza</li></a>
+      <li><i class="fas fa-vial"><a href="./productos3.html"></i>Vitaminas y suplementos</li></a>
+      <li><i class="fas fa-baby"><a href="./productos4.html"></i>Bebés y maternidad</li></a>
+      <li><i class="fas fa-leaf"><a href="./productos5.html"></i>Productos naturales</li></a>
+      <li><i class="fas fa-heartbeat"><a href="./productos6.html"></i>Cuidado personal</li></a>
+    </ul>
+  </nav>
+
+<!-- SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS-->
+
+<!-- BODY INICIO -->
+   <div class="breadcrumb">
+    <a href="./index.html">Inicio</a> &gt; <a href="#" style="color: #007bff;">Productos</a>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <div class="filter-group">
+        <h3>Type of Employment</h3>
+        <label><input type="checkbox" /> Full Time Jobs <span class="filter-count">165</span></label>
+        <label><input type="checkbox" checked /> Part Time Jobs <span class="filter-count">38</span></label>
+        <label><input type="checkbox" checked /> Remote Jobs <span class="filter-count">50</span></label>
+        <label><input type="checkbox" /> Internship Jobs <span class="filter-count">76</span></label>
+        <label><input type="checkbox" /> Training Jobs <span class="filter-count">15</span></label>
+      </div>
+
+      <div class="filter-group">
+        <h3>Seniority Level</h3>
+        <label><input type="checkbox" checked /> Student Level <span class="filter-count">38</span></label>
+        <label><input type="checkbox" checked /> Entry Level <span class="filter-count">56</span></label>
+        <label><input type="checkbox" /> Mid Level <span class="filter-count">40</span></label>
+        <label><input type="checkbox" /> Senior Level <span class="filter-count">38</span></label>
+        <label><input type="checkbox" /> Directors <span class="filter-count">26</span></label>
+        <label><input type="checkbox" /> VP or Above <span class="filter-count">16</span></label>
+      </div>
+
+      <div class="filter-group salary-range">
+        <h3>Salary Range</h3>
+        <div class="salary-values">
+          <span>10,000</span>
+          <span>500,000</span>
+        </div>
+        <input type="range" min="10000" max="500000" step="1000" value="100000"/>
+        <div class="buttons">
+          <button class="apply-btn">Apply</button>
+          <button class="reset-btn">Reset</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="product-grid">
+      <!-- 8 productos (2 filas) -->
+      <!-- Puedes cambiar las imágenes por las reales -->
+      <!-- Repite el siguiente bloque 8 veces -->
+      <!-- Tarjeta ejemplo -->
+<a href="./productoinfo.html?id=17">
+  <div class="product-card">
+    <img src="https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/037801M.jpg" alt="Vitamina C 1000mg">
+    <h3>Vitamina C 1000mg</h3>
+    <p>Frasco x 100 tabletas</p>
+    <p>Precio online <span class="price">S/39.90</span></p>
+    <div class="icons"><i class="fa fa-capsules"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=18">
+  <div class="product-card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPNZX6k_54eidijGOoCr_uLVEIfWThKu_Fg&s" alt="Omega 3 1000mg">
+    <h3>Omega 3 1000mg</h3>
+    <p>Frasco x 120 cápsulas</p>
+    <p>Precio online <span class="price">S/55.00</span></p>
+    <div class="icons"><i class="fa fa-fish"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=19">
+  <div class="product-card">
+    <img src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/fcd/fcd02953/y/8.jpg" alt="Multivitamínico Complejo">
+    <h3>Multivitamínico Complejo</h3>
+    <p>Frasco x 60 cápsulas</p>
+    <p>Precio online <span class="price">S/49.90</span></p>
+    <div class="icons"><i class="fa fa-apple-alt"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=20">
+  <div class="product-card">
+    <img src="https://farmaciauniversalpe.vtexassets.com/arquivos/ids/160028-800-auto?v=638591218785230000&width=800&height=auto&aspect=true" alt="Colágeno Hidrolizado">
+    <h3>Colágeno Hidrolizado</h3>
+    <p>Frasco x 30 sobres</p>
+    <p>Precio online <span class="price">S/75.00</span></p>
+    <div class="icons"><i class="fa fa-heart"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=21">
+  <div class="product-card">
+    <img src="https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/458/PMP00001999749/imagen2-1.jpeg" alt="Proteína Whey 1kg">
+    <h3>Proteína Whey 1kg</h3>
+    <p>Bolsa x 1kg</p>
+    <p>Precio online <span class="price">S/120.00</span></p>
+    <div class="icons"><i class="fa fa-dumbbell"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=22">
+  <div class="product-card">
+    <img src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/now/now00367/l/57.jpg" alt="Vitamina D3 2000UI">
+    <h3>Vitamina D3 2000UI</h3>
+    <p>Frasco x 90 cápsulas</p>
+    <p>Precio online <span class="price">S/44.90</span></p>
+    <div class="icons"><i class="fa fa-sun"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=23">
+  <div class="product-card">
+    <img src="https://http2.mlstatic.com/D_Q_NP_2X_949339-MLU78320943671_082024-T.webp" alt="Magnesio Quelado 500mg">
+    <h3>Magnesio Quelado 500mg</h3>
+    <p>Frasco x 100 cápsulas</p>
+    <p>Precio online <span class="price">S/52.00</span></p>
+    <div class="icons"><i class="fa fa-bolt"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+<a href="./productoinfo.html?id=24">
+  <div class="product-card">
+    <img src="https://oechsle.vteximg.com.br/arquivos/ids/2196536-1000-1000/image-4a7a4dde158d45cc92aa1c1993f8f077.jpg?v=637492459409930000" alt="Zinc + Vitamina C">
+    <h3>Zinc + Vitamina C</h3>
+    <p>Frasco x 60 tabletas</p>
+    <p>Precio online <span class="price">S/36.00</span></p>
+    <div class="icons"><i class="fa fa-shield-alt"></i><i class="fa fa-store"></i></div>
+    <button class="add-btn"><i class="fa fa-cart-plus"></i> Agregar</button>
+  </div>
+</a>
+
+
+
+
+      <!-- Copia y pega el bloque .product-card para completar los 8 productos -->
+      <!-- ... (producto 2 al 8 igual al anterior cambiando número e imagen si lo deseas) -->
+
+    </main>
+  </div>
+<!-- BODY FIN -->
+
+
+
+
+  
+   
+
+
+<!-- SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS-->
+
+
+  <!-- Slider de productos tipo carta -->
+  <section class="product-slider-section" style="display: none;">
+    <h2 class="product-slider-title">Productos recomendados</h2>
+    <div class="product-slider-wrapper">
+      <button class="product-slider-btn left" id="productSliderBtnLeft">&#10094;</button>
+      <div class="product-slider-track" id="productSliderTrack">
+        <!-- Las cartas de productos se insertan aquí por JS -->
+      </div>
+      <button class="product-slider-btn right" id="productSliderBtnRight">&#10095;</button>
+    </div>
+  </section>
+
+
+
+
+
+    <footer class="footer">
+        <!-- Logotipo -->
+        <div class="logo-section">
+            <img src="./img/logo.png" alt="Logo Milagros" class="logo">
+            
+        </div>
+
+        <!-- Sección de columnas -->
+        <div class="columns-section">
+            <div class="column">
+                <h3>Productos</h3>
+                <ul>
+                    <li><a href="#">Medicamentos</a></li>
+                    <li><a href="#">Productos para bebé</a></li>
+                    <li><a href="#">Elementos virtuales</a></li>
+                    <li><a href="#">Primeros auxilios</a></li>
+                    <li><a href="#">Higiene personal</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="#">Información</a></li>
+                    <li><a href="#">Apartado de búsqueda</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <a href="#" class="web-link">Web Milagros</a>
+            </div>
+        </div>
+
+        <!-- Línea divisoria -->
+        <hr>
+
+        <!-- Iconos de redes sociales -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+
+        <!-- Textos legales -->
+        <div class="legal-text">
+            <p>© 2025 Botica Milagros. Todos los derechos reservados.</p>
+            <p>Botica Milagros, comprometidos con tu salud y bienestar.</p>
+            <p>Ofrecemos atención personalizada, medicamentos de calidad y productos naturales para toda la familia.</p>
+        </div>
+
+        <!-- Descripción institucional -->
+        <div class="description-section">
+            <div class="description-column">
+                <p>Botica Milagros es una empresa dedicada al cuidado de la salud y el bienestar de la comunidad. Desde sus inicios, se ha comprometido a ofrecer productos farmacéuticos de calidad, atención personalizada y un servicio confiable. En Botica Milagros, cada cliente es atendido con profesionalismo y calidez, buscando siempre satisfacer sus necesidades médicas y orientarlos en el uso adecuado de los medicamentos. Con años de experiencia en el sector, la botica se ha convertido en un referente de confianza para cientos de familias.</p>
+                <p>Botica Milagros trabaja día a día para brindar no solo medicamentos, sino también orientación, productos naturales y servicios complementarios como toma de presión, control de peso y asesoramiento en tratamientos. Nuestro compromiso es velar por tu salud con responsabilidad y dedicación.</p>
+            </div>
+            <div class="description-column">
+                <p>Botica Milagros se distingue por su compromiso con la salud y el bienestar de sus clientes. Nuestro objetivo principal es ofrecer medicamentos seguros, productos de calidad y una atención cercana y profesional. Gracias a la confianza de nuestros clientes, nos hemos consolidado como una botica de referencia en la comunidad.</p>
+                <p>Además de productos farmacéuticos, en Botica Milagros encontrarás artículos de cuidado personal, productos naturales, suplementos y orientación especializada. Nos esforzamos cada día por ser un apoyo en tu camino hacia una vida más saludable.</p>
+            </div>
+        </div>
+
+        <!-- Derechos de autor finales -->
+        <div class="rights-reserved">
+            <p>All Rights Reserved</p>
+        </div>
+    </footer>
+
+<!--VENTANA FLOTANTE DE CARRITO-->
+
+    <!-- Overlay oscuro del carrito -->
+    <div id="cart-overlay"></div>
+
+    <!-- Panel del carrito (drawer) -->
+    <div id="cart-drawer">
+        <!-- Encabezado -->
+        <header class="cart-header">
+            <div class="cart-header-content">
+                <i class="fas fa-shopping-cart cart-icon"></i>
+                <h2 class="cart-title">Carrito</h2>
+            </div>
+            <button class="cart-close-btn" id="cart-close-trigger">&times;</button>
+        </header>
+
+        <!-- Cupón de descuento -->
+        <section class="cart-discount-section">
+            <div class="cart-discount-box">
+                <i class="fas fa-percent cart-discount-icon"></i>
+                <span class="cart-discount-text">¿Tienes un cupón de descuento?</span>
+            </div>
+            <input type="text" placeholder="Ingresa tu cupón" class="cart-discount-input">
+            <button class="cart-apply-btn">Aplicar</button>
+        </section>
+
+        <!-- Productos -->
+        <section class="cart-products-section">
+            <!-- Producto 1 -->
+            <div class="cart-product-card">
+                <img src="https://via.placeholder.com/100x150?text=Agua+Oxigenada" alt="Agua Oxigenada">
+                <div class="cart-product-info">
+                    <p class="cart-category">Primeros auxilios</p>
+                    <h3 class="cart-product-name">Agua Oxigenada Volumen 10 – 250 ml</h3>
+                    <div class="cart-quantity-controls">
+                        <button class="cart-control-btn">-</button>
+                        <input type="number" value="1" class="cart-quantity-input" min="1">
+                        <button class="cart-control-btn">+</button>
+                    </div>
+                    <p class="cart-price">s/67.90</p>
+                </div>
+                <button class="cart-delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="cart-product-card">
+                <img src="https://via.placeholder.com/100x150?text=Antiséptico" alt="Antiséptico">
+                <div class="cart-product-info">
+                    <p class="cart-category">Higiene</p>
+                    <h3 class="cart-product-name">Antiséptico Yodo – 100 ml</h3>
+                    <div class="cart-quantity-controls">
+                        <button class="cart-control-btn">-</button>
+                        <input type="number" value="2" class="cart-quantity-input" min="1">
+                        <button class="cart-control-btn">+</button>
+                    </div>
+                    <p class="cart-price">s/45.50</p>
+                </div>
+                <button class="cart-delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </section>
+
+        <!-- Resumen de compra -->
+        <section class="cart-summary-section">
+            <div class="cart-summary-header">
+                <span class="cart-view-more">Ver más <i class="fas fa-angle-down"></i></span>
+            </div>
+            <div class="cart-summary-item">
+                <span>Subtotal:</span>
+                <span>s/ 113.40</span>
+            </div>
+            <div class="cart-summary-item">
+                <span>Descuento:</span>
+                <span>s/ 0.00</span>
+            </div>
+            <div class="cart-summary-item">
+                <span>Total:</span>
+                <span>s/ 113.40</span>
+            </div>
+        </section>
+
+        <!-- Botones de acción -->
+        <section class="cart-action-buttons">
+            <a href="./finalizarcompra.html"><button class="cart-action-btn">Ir a pagar</button></a>
+            <a href="./carritodecomrpas.html"><button class="cart-action-btn">Ver carrito</button></a>
+        </section>
+
+        <!-- Texto aclaratorio -->
+        <p class="cart-info-text">
+            <i class="fas fa-info-circle"></i> El costo de envío no está incluido en el total.
+        </p>
+    </div>
+
+  <script src="./scripts/slider.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="product-data.js"></script>
+<script src="./scripts/carritodecompras.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/slider.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="product-data.js"></script>
+  <script src="./css/motro de busqueda/motor.js"></script>
+    
+</body>
+</html>

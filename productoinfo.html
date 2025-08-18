@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Información del Producto</title>
+  <link rel="stylesheet" href="./css/ventanflotantedecarrito.css">
+  <link rel="stylesheet" href="./css/ventanaflotanteusuario.css">
+  <link rel="stylesheet" href="./css/vntanaflotantenotificaciones.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/motro de busqueda/buscador.css">
+  <link rel="icon" type="image/x-icon" href="./img/logosolo.png">
+  <link rel="stylesheet" href="./css/slider.css">
+  <link rel="stylesheet" href="./css/motro de busqueda/buscador.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/mian-nav.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: 14px;
+      color: #666;
+      padding: 10px 20px;
+      background: #f9f9f9;
+    }
+
+    .breadcrumb span {
+      margin: 0 5px;
+    }
+
+    /* Layout principal */
+    .product-section {
+      display: flex;
+      padding: 20px 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .left-col {
+      flex: 1;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .thumbnails {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s, border 0.3s;
+    }
+
+    .thumbnails img:hover {
+      transform: scale(1.1);
+      border-color: #28a745;
+    }
+
+    .main-image img {
+      width: 300px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .main-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .right-col {
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .right-col h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .price .regular {
+      color: #666;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    .price .promo {
+      color: #28a745;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .description ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    .description li {
+      margin-bottom: 6px;
+    }
+
+    .delivery {
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    .delivery span {
+      display: block;
+      margin: 5px 0;
+    }
+
+    .available {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .consult {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #28a745;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: #218838;
+      transform: translateY(-2px);
+    }
+
+    /* Tarjetas informativas */
+    .info-section {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .info-section .card {
+      flex: 1;
+      min-width: 280px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .info-section h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 18px;
+    }
+
+    .info-section ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .info-section li {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Toast de confirmación */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #28a745;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      animation: fadeInOut 3s ease;
+      font-weight: bold;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(20px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(20px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      .main-image img {
+        width: 100%;
+        max-width: 280px;
+      }
+      .info-section {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    /* Slider de productos relacionados */
+    /* Contenedor principal del slider */
+    .related-products-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .related-products-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 1.8rem;
+    }
+
+    /* Carril de productos (scroll horizontal) */
+    .products-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      padding: 10px 0;
+      scroll-snap-type: x mandatory;
+      border-radius: 10px;
+    }
+
+    /* Cada artículo de producto */
+    .product-item {
+      min-width: 250px;
+      max-width: 280px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      scroll-snap-align: start;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-item h3 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .product-item p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .product-item .price-tag {
+      font-weight: bold;
+      color: #e63946;
+    }
+
+    .availability-icons {
+      margin: 10px 0;
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .availability-icons i {
+      margin-right: 10px;
+    }
+
+    .cta-add {
+      width: 100%;
+      padding: 10px;
+      background-color: #2A9F3C;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .cta-add:hover {
+      background-color: #023e8a;
+    }
+
+    .cta-add i {
+      margin-right: 5px;
+    }
+
+    /* Flechas de navegación */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      transition: background 0.3s ease;
+    }
+
+    .nav-arrow:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .related-products-section {
+        padding: 0 15px;
+      }
+
+      .related-products-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .product-item {
+        min-width: 220px;
+        max-width: 240px;
+        padding: 12px;
+      }
+
+      .product-item img {
+        height: 150px;
+      }
+
+      .nav-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+      }
+
+      .arrow-left { left: 5px; }
+      .arrow-right { right: 5px; }
+    }
+
+    @media (max-width: 480px) {
+      .products-track {
+        gap: 15px;
+      }
+
+      .product-item {
+        min-width: 200px;
+        padding: 10px;
+      }
+
+      .product-item h3 {
+        font-size: 1rem;
+      }
+
+      .cta-add {
+        padding: 8px;
+        font-size: 0.85rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  
+    <a href="">
+      <div class="slider-container">
+        <div class="slider-track">
+        <img class="slide-image" src="./img/img/sloder.png" alt="">
+        <img class="slide-image" src="./img/img/sloder.png" alt="">
+        <img class="slide-image" src="./img/img/sloder.png" alt="">
+        </div>
+      </div>
+    </a>
+
+    <header class="header">
+    <div class="logo-container">
+        <div class="logo">
+        <img src="./img/logo.png" alt="MILAGRO">
+        </div>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </div>
+
+    <div class="search-bar">
+        <div class="icon-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" />
+        </div>
+    <!-- Contenedor de productos -->
+  <div class="productos-container" id="productos-container" style="display: none;"> 
+    <!-- Los productos se generarán automáticamente -->
+  </div>
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Buscar productos..." 
+        >
+        <div id="suggestions-box"></div>
+      </div>    </div>
+
+    <div class="nav-icons" id="navIcons">
+    <!-- Botón Avisos -->
+    <button class="icono-nav" id="btnAvisos">
+      <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Avisos" />
+      <span>Avisos</span>
+    </button>
+
+      <div class="nav-container">
+          <button class="nav-icon" id="cart-open-trigger">
+              <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" />
+              <span>Carrito</span>
+          </button>
+      </div>
+
+      <button class="nav-icon" id="perfilBtn">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Perfil" />
+        <span>Perfil</span>
+      </button>
+    </div>
+
+    <!-- codigo no tocar -->
+    <button class="icono-nav" id="btnUsuario" style="display: none;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Usuario" />
+      <span>Usuario</span>
+    </button>
+
+    <!-- Ventana Usuario -->
+    <div class="ventanaEmergente" id="menuUsuario">
+      <a href="#">Iniciar sesión</a>
+      <a href="#">Cerrar sesión</a>
+      <a href="#">Ver perfil</a>
+    </div>
+
+
+    <!-- Menú flotante de usuairo -->
+    <div class="menu-perfil" id="menuPerfil"style="display: none;">
+      <a href="./login.html">Iniciar sesión</a>
+      <a href="#">Cerrar sesión</a>
+      <a href="./cuenta.html">Ver perfil</a>
+    </div>
+    <!-- Menú flotante de notificaciones -->
+    <div class="ventanaEmergente cajaAvisos" id="cajaAvisos">
+      <h4 style="margin: 16px 16px 8px;">Notificaciones</h4>
+
+      <div class="aviso">
+        <p>¡30% de descuento en laptops!</p>
+        <button onclick="location.href='#oferta-laptops'">Ver</button>
+      </div>
+
+      <div class="aviso">
+        <p>Nuevo diseño del carrito de compras</p>
+        <button onclick="location.href='#carrito'">Ver</button>
+      </div>
+
+      <div class="aviso">
+        <p>Nuevo producto: Smartphone Z10</p>
+        <button onclick="location.href='#producto-z10'">Ver</button>
+      </div>
+    </div>
+    </header>
+
+
+
+  <nav class="main-nav">
+    <ul>
+      <li class="inicio"><i class="fas fa-home"><a href="./index.html"></i>Inicio</li></a>
+      <li><i class="fas fa-pills"><a href="./productos.html"></i>Medicamentos genéricos</li></a>
+      <li><i class="fas fa-spa"><a href="./productos2.html"></i>Higiene y belleza</li></a>
+      <li><i class="fas fa-vial"><a href="./productos3.html"></i>Vitaminas y suplementos</li></a>
+      <li><i class="fas fa-baby"><a href="./productos4.html"></i>Bebés y maternidad</li></a>
+      <li><i class="fas fa-leaf"><a href="./productos5.html"></i>Productos naturales</li></a>
+      <li><i class="fas fa-heartbeat"><a href="./productos6.html"></i>Cuidado personal</li></a>
+    </ul>
+  </nav>
+
+  <!-- SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS-->
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    Inicio <span>></span> Productos <span>></span> <span id="breadcrumb-product">Cargando...</span>
+  </div>
+
+  <!-- Contenedor principal centrado -->
+  <div class="container">
+
+    <!-- Producto principal -->
+    <div class="product-section">
+      <div class="left-col">
+        <div class="thumbnails" id="thumbnails">
+          <!-- Miniaturas dinámicas -->
+        </div>
+        <div class="main-image">
+          <img id="main-img" src="" alt="Producto">
+        </div>
+      </div>
+      <div class="right-col">
+        <h1 id="product-title">Cargando producto...</h1>
+        <div class="price">
+          <span class="regular" id="regular-price"></span>
+          <span class="promo" id="promo-price"></span>
+        </div>
+        <div class="description">
+          <ul id="description-list"></ul>
+        </div>
+        <div class="delivery">
+          <span><i class="fa-solid fa-truck"></i> <b>Despacho a domicilio:</b> <span class="available">Disponible</span></span>
+          <span><i class="fa-solid fa-store"></i> <b>Retiro en tienda:</b> <span class="consult">Consultar</span></span>
+        </div>
+        <button class="btn" onclick="addToCart()"> <i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
+      </div>
+    </div>
+
+    <!-- Info adicional -->
+    <div class="info-section">
+      <div class="card">
+        <h2><i class="fa-solid fa-circle-exclamation"></i> Precauciones:</h2>
+        <ul id="precauciones"></ul>
+      </div>
+      <div class="card">
+        <h2><i class="fa-solid fa-flask"></i> Composición:</h2>
+        <ul id="composicion"></ul>
+        <h2><i class="fa-solid fa-box"></i> Presentación:</h2>
+        <ul id="presentacion"></ul>
+      </div>
+      <div class="card">
+        <h2><i class="fa-solid fa-circle-info"></i> Recomendaciones de uso:</h2>
+        <ul id="recomendaciones"></ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- Sección de productos relacionados -->
+  <div class="related-products-section">
+    <h2>Productos relacionados</h2>
+    <div class="products-track" id="slider">
+      
+      <a href="./productoinfo.html?id=5">
+        <div class="product-item">
+          <img src="https://belcorpperu.vtexassets.com/arquivos/ids/333158/200118824_fotofondoblanco1.jpg?v=638783727193670000" alt="Mascarilla Facial Hidratante">
+          <h3>Mascarilla Facial Hidratante</h3>
+          <p>Paquete x 5 unidades</p>
+          <p>Precio online <span class="price-tag">S/14.90</span></p>
+          <div class="availability-icons"><i class="fa fa-truck"></i><i class="fa fa-store"></i></div>
+          <button class="cta-add"><i class="fa fa-cart-plus"></i> Agregar</button>
+        </div>
+      </a>
+
+      <a href="./productoinfo.html?id=1">
+        <div class="product-item">
+          <img src="https://plazavea.vteximg.com.br/arquivos/ids/29772067-450-450/20146148.jpg?v=638652327498030000" alt="Shampoo Herbal 400ml">
+          <h3>Shampoo Herbal 400ml</h3>
+          <p>Envase x 400ml</p>
+          <p>Precio online <span class="price-tag">S/12.90</span></p>
+          <div class="availability-icons"><i class="fa fa-truck"></i><i class="fa fa-store"></i></div>
+          <button class="cta-add"><i class="fa fa-cart-plus"></i> Agregar</button>
+        </div>
+      </a>
+
+      <a href="./productoinfo.html?id=2">
+        <div class="product-item">
+          <img src="https://media.falabella.com/tottusPE/10191267_1/public" alt="Crema Corporal 250ml">
+          <h3>Crema Corporal 250ml</h3>
+          <p>Frasco x 250ml</p>
+          <p>Precio online <span class="price-tag">S/9.50</span></p>
+          <div class="availability-icons"><i class="fa fa-truck"></i><i class="fa fa-store"></i></div>
+          <button class="cta-add"><i class="fa fa-cart-plus"></i> Agregar</button>
+        </div>
+      </a>
+
+      <a href="./productoinfo.html?id=3">
+        <div class="product-item">
+          <img src="https://boticaportugal.com/cdn/shop/products/Jabonflorestaantimicrobial.png?v=1654269437" alt="Jabón Antibacterial 100g">
+          <h3>Jabón Antibacterial 100g</h3>
+          <p>Barra x 100g</p>
+          <p>Precio online <span class="price-tag">S/3.20</span></p>
+          <div class="availability-icons"><i class="fa fa-truck"></i><i class="fa fa-store"></i></div>
+          <button class="cta-add"><i class="fa fa-cart-plus"></i> Agregar</button>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Flechas de navegación -->
+    <button class="nav-arrow arrow-left" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="nav-arrow arrow-right" onclick="moveSlider(1)">&#10095;</button>
+  </div>
+
+  <!-- Toast de confirmación -->
+  <div class="toast" id="toast">✅ Producto agregado al carrito</div>
+
+  <script>
+
+
+
+    // Función para cambiar imagen principal
+    function changeImage(src) {
+      document.getElementById('main-img').src = src;
+    }
+
+    // Función para agregar al carrito
+    function addToCart() {
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    // Cargar producto según el ID en la URL
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      if (!id || !productos[id]) {
+        document.getElementById('product-title').textContent = "Producto no encontrado";
+        document.getElementById('breadcrumb-product').textContent = "No encontrado";
+        return;
+      }
+
+      const prod = productos[id];
+
+      // Actualizar contenido
+      document.getElementById('product-title').textContent = prod.nombre;
+      document.getElementById('breadcrumb-product').textContent = prod.nombre;
+      document.getElementById('regular-price').textContent = prod.precio.regular;
+      document.getElementById('promo-price').textContent = prod.precio.promo;
+      document.getElementById('main-img').src = prod.imagenes[0];
+
+      // Generar miniaturas
+      const thumbnails = document.getElementById('thumbnails');
+      thumbnails.innerHTML = '';
+      prod.imagenes.forEach(img => {
+        const thumb = document.createElement('img');
+        thumb.src = img;
+        thumb.onclick = () => changeImage(img);
+        thumbnails.appendChild(thumb);
+      });
+
+      // Función para llenar listas
+      function llenarLista(idLista, items) {
+        const lista = document.getElementById(idLista);
+        lista.innerHTML = '';
+        items.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = item;
+          lista.appendChild(li);
+        });
+      }
+
+      llenarLista('description-list', prod.descripcion);
+      llenarLista('precauciones', prod.precauciones);
+      llenarLista('composicion', prod.composicion);
+      llenarLista('presentacion', prod.presentacion);
+      llenarLista('recomendaciones', prod.recomendaciones);
+    };
+        const slider = document.getElementById('slider');
+
+    function moveSlider(direction) {
+      const scrollAmount = 300 * direction; // ajusta según el ancho de las tarjetas
+      slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  </script>
+<!-- Slider de productos tipo carta -->
+  <section class="product-slider-section" style="display: none;">
+    <h2 class="product-slider-title">Productos recomendados</h2>
+    <div class="product-slider-wrapper">
+      <button class="product-slider-btn left" id="productSliderBtnLeft">&#10094;</button>
+      <div class="product-slider-track" id="productSliderTrack">
+        <!-- Las cartas de productos se insertan aquí por JS -->
+      </div>
+      <button class="product-slider-btn right" id="productSliderBtnRight">&#10095;</button>
+    </div>
+  </section>
+
+
+
+
+
+    <footer class="footer">
+        <!-- Logotipo -->
+        <div class="logo-section">
+            <img src="./img/logo.png" alt="Logo Milagros" class="logo">
+            
+        </div>
+
+        <!-- Sección de columnas -->
+        <div class="columns-section">
+            <div class="column">
+                <h3>Productos</h3>
+                <ul>
+                    <li><a href="#">Medicamentos</a></li>
+                    <li><a href="#">Productos para bebé</a></li>
+                    <li><a href="#">Elementos virtuales</a></li>
+                    <li><a href="#">Primeros auxilios</a></li>
+                    <li><a href="#">Higiene personal</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="#">Información</a></li>
+                    <li><a href="#">Apartado de búsqueda</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <a href="#" class="web-link">Web Milagros</a>
+            </div>
+        </div>
+
+        <!-- Línea divisoria -->
+        <hr>
+
+        <!-- Iconos de redes sociales -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+
+        <!-- Textos legales -->
+        <div class="legal-text">
+            <p>© 2025 Botica Milagros. Todos los derechos reservados.</p>
+            <p>Botica Milagros, comprometidos con tu salud y bienestar.</p>
+            <p>Ofrecemos atención personalizada, medicamentos de calidad y productos naturales para toda la familia.</p>
+        </div>
+
+        <!-- Descripción institucional -->
+        <div class="description-section">
+            <div class="description-column">
+                <p>Botica Milagros es una empresa dedicada al cuidado de la salud y el bienestar de la comunidad. Desde sus inicios, se ha comprometido a ofrecer productos farmacéuticos de calidad, atención personalizada y un servicio confiable. En Botica Milagros, cada cliente es atendido con profesionalismo y calidez, buscando siempre satisfacer sus necesidades médicas y orientarlos en el uso adecuado de los medicamentos. Con años de experiencia en el sector, la botica se ha convertido en un referente de confianza para cientos de familias.</p>
+                <p>Botica Milagros trabaja día a día para brindar no solo medicamentos, sino también orientación, productos naturales y servicios complementarios como toma de presión, control de peso y asesoramiento en tratamientos. Nuestro compromiso es velar por tu salud con responsabilidad y dedicación.</p>
+            </div>
+            <div class="description-column">
+                <p>Botica Milagros se distingue por su compromiso con la salud y el bienestar de sus clientes. Nuestro objetivo principal es ofrecer medicamentos seguros, productos de calidad y una atención cercana y profesional. Gracias a la confianza de nuestros clientes, nos hemos consolidado como una botica de referencia en la comunidad.</p>
+                <p>Además de productos farmacéuticos, en Botica Milagros encontrarás artículos de cuidado personal, productos naturales, suplementos y orientación especializada. Nos esforzamos cada día por ser un apoyo en tu camino hacia una vida más saludable.</p>
+            </div>
+        </div>
+
+        <!-- Derechos de autor finales -->
+        <div class="rights-reserved">
+            <p>All Rights Reserved</p>
+        </div>
+    </footer>
+
+<!--VENTANA FLOTANTE DE CARRITO-->
+
+    <!-- Overlay oscuro del carrito -->
+    <div id="cart-overlay"></div>
+
+    <!-- Panel del carrito (drawer) -->
+    <div id="cart-drawer">
+        <!-- Encabezado -->
+        <header class="cart-header">
+            <div class="cart-header-content">
+                <i class="fas fa-shopping-cart cart-icon"></i>
+                <h2 class="cart-title">Carrito</h2>
+            </div>
+            <button class="cart-close-btn" id="cart-close-trigger">&times;</button>
+        </header>
+
+        <!-- Cupón de descuento -->
+        <section class="cart-discount-section">
+            <div class="cart-discount-box">
+                <i class="fas fa-percent cart-discount-icon"></i>
+                <span class="cart-discount-text">¿Tienes un cupón de descuento?</span>
+            </div>
+            <input type="text" placeholder="Ingresa tu cupón" class="cart-discount-input">
+            <button class="cart-apply-btn">Aplicar</button>
+        </section>
+
+        <!-- Productos -->
+        <section class="cart-products-section">
+            <!-- Producto 1 -->
+            <div class="cart-product-card">
+                <img src="https://via.placeholder.com/100x150?text=Agua+Oxigenada" alt="Agua Oxigenada">
+                <div class="cart-product-info">
+                    <p class="cart-category">Primeros auxilios</p>
+                    <h3 class="cart-product-name">Agua Oxigenada Volumen 10 – 250 ml</h3>
+                    <div class="cart-quantity-controls">
+                        <button class="cart-control-btn">-</button>
+                        <input type="number" value="1" class="cart-quantity-input" min="1">
+                        <button class="cart-control-btn">+</button>
+                    </div>
+                    <p class="cart-price">s/67.90</p>
+                </div>
+                <button class="cart-delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="cart-product-card">
+                <img src="https://via.placeholder.com/100x150?text=Antiséptico" alt="Antiséptico">
+                <div class="cart-product-info">
+                    <p class="cart-category">Higiene</p>
+                    <h3 class="cart-product-name">Antiséptico Yodo – 100 ml</h3>
+                    <div class="cart-quantity-controls">
+                        <button class="cart-control-btn">-</button>
+                        <input type="number" value="2" class="cart-quantity-input" min="1">
+                        <button class="cart-control-btn">+</button>
+                    </div>
+                    <p class="cart-price">s/45.50</p>
+                </div>
+                <button class="cart-delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </section>
+
+        <!-- Resumen de compra -->
+        <section class="cart-summary-section">
+            <div class="cart-summary-header">
+                <span class="cart-view-more">Ver más <i class="fas fa-angle-down"></i></span>
+            </div>
+            <div class="cart-summary-item">
+                <span>Subtotal:</span>
+                <span>s/ 113.40</span>
+            </div>
+            <div class="cart-summary-item">
+                <span>Descuento:</span>
+                <span>s/ 0.00</span>
+            </div>
+            <div class="cart-summary-item">
+                <span>Total:</span>
+                <span>s/ 113.40</span>
+            </div>
+        </section>
+
+        <!-- Botones de acción -->
+        <section class="cart-action-buttons">
+            <a href="./finalizarcompra.html"><button class="cart-action-btn">Ir a pagar</button></a>
+            <a href="./carritodecomrpas.html"><button class="cart-action-btn">Ver carrito</button></a>
+        </section>
+
+        <!-- Texto aclaratorio -->
+        <p class="cart-info-text">
+            <i class="fas fa-info-circle"></i> El costo de envío no está incluido en el total.
+        </p>
+    </div>
+  <script src="./css/motro de busqueda/motor.js"></script>
+  <script src="./scripts/slider.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="product-data.js"></script>
+</body>
+</html>

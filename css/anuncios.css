@@ -1,0 +1,87 @@
+/*addd 2*/
+.ad-container {
+  width: 100%;
+  max-width: 1485px;
+  margin: 32px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.ad-banner-img {
+  margin-bottom: 40px;
+  margin-top: 40px;
+  width: 100%;
+  display: block;
+  border-radius: 24px;
+}
+
+
+
+
+/*add 3*/
+
+/* Contenedor del carrusel */
+.carousel-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 32px auto 0 auto;
+  padding: 6px; /* Menor padding en PC */
+  box-sizing: border-box;
+}
+
+/* Tarjetas individuales */
+.card-button {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  text-decoration: none;
+  outline: none;
+  max-width: 100%;
+}
+
+.card-button img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+    @media (max-width: 1400px) {
+      .carousel-container {
+        padding: 0 80px 32px 80px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .carousel-container {
+        padding: 0 60px 28px 60px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .carousel-container {
+        padding: 0 40px 24px 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carousel-container {
+        padding: 0 20px 20px 20px;
+      }
+    }
+
+
+/*add 4*/

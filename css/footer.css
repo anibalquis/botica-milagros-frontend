@@ -1,0 +1,140 @@
+
+
+.footer {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Sección del logotipo */
+.logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: #00ff00;
+    font-weight: bold;
+}
+
+/* Sección de columnas */
+.columns-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.column {
+    flex: 1;
+}
+
+.column h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.column ul li {
+    margin-bottom: 8px;
+}
+
+.column ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.column ul li a:hover {
+    color: #007bff;
+}
+
+.web-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.web-link:hover {
+    color: #007bff;
+}
+
+/* Línea divisoria */
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* Iconos de redes sociales */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    font-size: 24px;
+    color: #333;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+
+/* Textos legales */
+.legal-text p {
+    text-align: center;
+    margin: 10px 0;
+    color: #777;
+}
+
+/* Descripción institucional */
+.description-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.description-column {
+    flex: 1;
+    text-align: justify;
+    padding: 0 20px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .columns-section {
+        flex-direction: column;
+    }
+
+    .column {
+        margin-bottom: 20px;
+    }
+
+    .description-section {
+        flex-direction: column;
+    }
+
+    .description-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
