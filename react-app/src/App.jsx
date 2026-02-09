@@ -11,10 +11,12 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop /> 
       <CartProvider>
         <UIProvider>
           <SearchProvider>
