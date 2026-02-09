@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getProductById } from "../services/medications";
+import { getMedicinesById } from "../services/medications";
 import { useCart } from "../contexts/CartContext";
 import { useToast } from "../components/ui/Toast";
 import ProductCard from "../components/products/ProductCard";
@@ -20,7 +20,7 @@ export default function ProductDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const currentMedicine = await getProductById(id);
+        const currentMedicine = await getMedicinesById(id);
         setMedicine(currentMedicine);
 
         const currentRelatedMedicines = await getRelatedMedicinesByCategoryId(

@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ProductCard from "../components/products/ProductCard";
 import { getCategories } from "../services/categories";
-import { getProducts } from "../services/medications";
+import { getNormalizedMedicines } from "../services/medications";
 
 export default function Products() {
   const { categoria } = useParams();
@@ -20,7 +20,7 @@ export default function Products() {
     const fetchData = async () => {
       const [cats, prods] = await Promise.all([
         getCategories(), // navegación
-        getProducts(), // productos normalizados
+        getNormalizedMedicines(), // productos normalizados
       ]);
 
       setCategories(cats);

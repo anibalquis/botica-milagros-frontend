@@ -1,21 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-const CATEGORY_ICONS = {
-  medicamentos: "fa-pills",
-  belleza: "fa-spa",
-  vitaminas: "fa-vial",
-  bebes: "fa-baby",
-  naturales: "fa-leaf",
-  cuidado: "fa-heartbeat",
-};
-
-export const normalizeCategoryName = (name) => {
-  return name
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .split(" ")[0];
-};
+import { normalizeCategoryName } from "../helpers/normalizeCategoryName";
+import { API_BASE_URL, CATEGORY_ICONS } from "../constants";
 
 export async function getCategories() {
   try {
@@ -89,6 +73,6 @@ export async function getRelatedMedicinesByCategoryId(id) {
     return relatedMedicines;
   } catch (error) {
     console.error({ error });
-    return {};
+    return [];
   }
 }
