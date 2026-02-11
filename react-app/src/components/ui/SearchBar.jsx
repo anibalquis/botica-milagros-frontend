@@ -15,8 +15,6 @@ export default function SearchBar() {
   const inputRef = useRef(null);
   const containerRef = useRef(null);
 
-  console.log({ results });
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {

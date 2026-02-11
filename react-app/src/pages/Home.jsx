@@ -6,6 +6,7 @@ import adImg2 from "../assets/images/add2.png";
 import adImg4 from "../assets/images/add4.png";
 import { useEffect, useState } from "react";
 import { getRelatedMedicinesByCategoryId } from "../services/categories";
+import { CATEGORIES } from "../constants";
 
 export default function Home() {
   const [relatedMedicines, setRelatedMedicines] = useState([]);
@@ -18,7 +19,15 @@ export default function Home() {
 
   const fetchCareProducts = async () => {
     try {
-      const data = await getRelatedMedicinesByCategoryId(9);
+      const careCategory = CATEGORIES.find(
+        (cat) => cat.name === "Cuidado personal",
+      );
+
+      if (!careCategory) {
+        throw new Error("Categoría no encontrada");
+      }
+
+      const data = await getRelatedMedicinesByCategoryId(careCategory.id);
       setRelatedMedicines(data);
     } catch (error) {
       console.error("Error loading care products", error);
@@ -29,7 +38,15 @@ export default function Home() {
 
   const fetchBabyProducts = async () => {
     try {
-      const data = await getRelatedMedicinesByCategoryId(7);
+      const babyCategory = CATEGORIES.find(
+        (cat) => cat.name === "Bebés y maternidad",
+      );
+
+      if (!babyCategory) {
+        throw new Error("Categoría no encontrada");
+      }
+
+      const data = await getRelatedMedicinesByCategoryId(babyCategory.id);
       setBabyProducts(data);
     } catch (error) {
       console.error("Error loading baby products", error);
@@ -40,19 +57,27 @@ export default function Home() {
 
   const fetchGenericMedicines = async () => {
     try {
-      const data = await getRelatedMedicinesByCategoryId(4);
+      const genericCategory = CATEGORIES.find(
+        (cat) => cat.name === "Medicamentos genéricos",
+      );
+
+      if (!genericCategory) {
+        throw new Error("Categoría no encontrada");
+      }
+
+      const data = await getRelatedMedicinesByCategoryId(genericCategory.id);
       setGenericMedicines(data);
     } catch (error) {
-      console.error("Error loading supplement products", error);
+      console.error("Error loading generic medicines", error);
     } finally {
       setLoadingGenericMedicines(false);
     }
   };
 
   useEffect(() => {
-    fetchCareProducts();
-    fetchBabyProducts();
     fetchGenericMedicines();
+    fetchBabyProducts();
+    fetchCareProducts();
   }, []);
 
   return (
